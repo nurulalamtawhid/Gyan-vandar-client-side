@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import ErrorElement from "../../Errorpage/ErrorElement";
 import Main from "../../Layout/MainLayout/Main";
+import BooksCollection from "../../Pages/BooksCollection/BooksCollection";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Blog from "../../Pages/Shared/Blog/Blog";
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
                 {
                     path : '/blog',
                     element:<Blog></Blog>
+                },
+                {
+                    path :'/bookscollection/:name',
+                    element :<BooksCollection></BooksCollection>,
+                    loader :({params})=> fetch(`http://localhost:5001/products/${params.name}`)
                 }
             ]
         }
