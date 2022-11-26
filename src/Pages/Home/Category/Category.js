@@ -24,9 +24,7 @@ const Category = () => {
                         ></CategoryOptions>)
                 }
             </div>
-            <div>
-                <h1>jdgwksj</h1>
-            </div>
+            
         </section>
     );
 };
