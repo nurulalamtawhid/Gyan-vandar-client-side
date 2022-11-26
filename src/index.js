@@ -19,10 +19,8 @@ root.render(
    <QueryClientProvider client={queryClient}>
    <Authprovider>
    <App/>
-   </Authprovider>
-    
+   </Authprovider>  
   </QueryClientProvider> 
-   
   </React.StrictMode>
 );
 

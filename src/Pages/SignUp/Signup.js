@@ -1,7 +1,8 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
 
 const Signup = () => {
@@ -9,7 +10,10 @@ const Signup = () => {
     const [signUpError, setSignupError] = useState('');
     const [createdUseremail, setCreatedUseremail] = useState('');
     const [role, setRole] = useState(false);
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser,providerlogin } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname ||'/';
     const handleRegister = data => {
         setSignupError('');
         createUser(data.email,data.password)
@@ -55,6 +59,20 @@ const Signup = () => {
            
 
         })
+    }
+    const googleProvider = new GoogleAuthProvider();
+    const handleGoogleSignIn =()=>{
+        providerlogin(googleProvider)
+        .then(result=>{
+            const user = result.user;
+            const role = 'Buyer';
+           
+            console.log(user);
+            saveUser(user.displayName,user.email,role);
+            toast.success('Successfully Login & save user');
+            navigate(from,{replace : true})
+        })
+        .catch(error => console.error(error))
     }
     return (
         <div className='h-[800px] flex justify-center items-center '>
@@ -112,7 +130,7 @@ const Signup = () => {
                 </form>
                 <p className='mt-2'>Already have an account ? <Link to='/login' className='text-primary'>LogIn</Link></p>
                 <div className="divider">OR</div>
-                <button className=' btn btn-outline w-full'>LogIn with Google</button>
+                <button className=' btn btn-outline w-full' onClick={handleGoogleSignIn}>LogIn with Google</button>
             </div>
         </div>
     );
