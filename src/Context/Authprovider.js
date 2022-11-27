@@ -25,7 +25,9 @@ const Authprovider = ({children}) => {
 
     const logOut = () =>{
         setLoading(true);
+        localStorage.removeItem("email");
         return signOut(auth);
+
     };
     const providerlogin =(provider)=>{
         setLoading(true);
@@ -41,7 +43,10 @@ const Authprovider = ({children}) => {
 
         return () => unsubscribe();
     }, [])
-
+    useEffect(()=>{
+        localStorage.setItem("email",user?.email)
+    },[user])
+   
     const authInfo = {
         createUser,
         signIn,

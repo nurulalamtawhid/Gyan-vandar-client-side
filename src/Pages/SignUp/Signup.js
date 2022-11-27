@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
+import useToken from '../../Hook/useToken';
 import Loading from '../Shared/Loading/Loading';
 
 const Signup = () => {
@@ -14,9 +15,13 @@ const Signup = () => {
     const { createUser, updateUser,providerlogin,loading } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
+    const [token] = useToken(createdUseremail);
     const from = location.state?.from?.pathname ||'/';
     if(loading){
         return <Loading></Loading>
+    }
+    if(token){
+        navigate('/');
     }
     const handleRegister = data => {
         setSignupError('');

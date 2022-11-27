@@ -2,18 +2,30 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/Authprovider';
+import useToken from '../../../Hook/useToken';
+import Loading from '../../Shared/Loading/Loading';
 
 const Myorders = () => {
-    const { user } = useContext(AuthContext);
-    const url = `http://localhost:5001/bookings?email=${user?.email}`;
-    const { data: bookings = [] } = useQuery({
+    const { user,loading } = useContext(AuthContext);
+    const email = localStorage.getItem("email");
+    
+    const url = `http://localhost:5001/bookings?email=${email}`;
+    const { data: bookings = [],refetch} = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url,{
+                headers :{
+                    authorization : `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
+            
         }
     })
+    refetch();
+   
+    
 
     return (
         <div>
@@ -36,7 +48,7 @@ const Myorders = () => {
                     <tbody>
 
                         {
-                            bookings.map((booking, i) =>
+                          bookings &&  bookings?.map((booking, i) =>
                                 <tr className="hover" key={booking._id}>
                                     <th>{i + 1}</th>
                                     <td>{booking.buyer}</td>
