@@ -9,6 +9,8 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Blog from "../../Pages/Shared/Blog/Blog";
 import Signup from "../../Pages/SignUp/Signup";
+import AdminRoutes from "../AdminRoutes/AdminRoutes";
+import PrivateRoutes from "../Privateroutes/PrivateRoutes";
 
 
 
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
         },
         {
             path:'/dashboard',
-            element:<DashBoardLayout></DashBoardLayout>,
+            element:<PrivateRoutes><DashBoardLayout></DashBoardLayout></PrivateRoutes>,
             children:[
                 {
                     path:'/dashboard',
@@ -53,7 +55,7 @@ const router = createBrowserRouter([
                 },
                 {
                     path:'/dashboard/allusers',
-                    element:<Allusers></Allusers>
+                    element:<AdminRoutes><Allusers></Allusers></AdminRoutes>
                 }
 
             ]

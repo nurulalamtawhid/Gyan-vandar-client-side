@@ -3,8 +3,10 @@ import { useEffect, useState } from "react"
 const useAdmin = email => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isAdminLoading,setIsAdminLoading] = useState(true);
+    //console.log(email);
     useEffect(() => {
         if (email) {
+            console.log(email);
             fetch(`http://localhost:5001/users/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {

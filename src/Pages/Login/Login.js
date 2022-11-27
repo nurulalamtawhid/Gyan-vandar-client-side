@@ -17,12 +17,13 @@ const Login = () => {
     const navigate = useNavigate();
     const from = location.state?.from?.pathname ||'/';
 
-    if(token){
-        navigate('/');
-    }
     if(loading){
         return <Loading></Loading>
     }
+    if(token){
+        navigate('/');
+    }
+  
 
 
 
