@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BooksCollectionCard = ({ book }) => {
+const BooksCollectionCard = ({ book,setBook }) => {
     const { name, image, resaleprice, originalprice, sellername, usage } = book;
     return (
         <div>
@@ -13,7 +13,14 @@ const BooksCollectionCard = ({ book }) => {
                     <p>Original Price :{originalprice}</p>
                     <p>Reasle Price :{resaleprice}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn  bg-gradient-to-r from-stone-200 to-zinc-400 text-stone-900">Book-Now</button>
+                    <label 
+                   
+                    htmlFor="Booking-Books" 
+                    onClick={() => setBook(book)} 
+                    className="btn  bg-gradient-to-r from-stone-200 to-zinc-400 text-stone-900">Book-Now</label>
+                        {/*<button onClick={()=>setBook(book)} className="btn  bg-gradient-to-r from-stone-200 to-zinc-400 text-stone-900">Book-Now</button>
+                        disabled={slots .length === 0}
+                        */}
                     </div>
                 </div>
             </div>

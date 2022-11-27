@@ -4,26 +4,25 @@ import Logo from '../../../Assets/Logo.png'
 import { AuthContext } from '../../../Context/Authprovider';
 
 const Navbar = () => {
-    const {user,logOut}= useContext(AuthContext);
-    const handlelogout=()=>{
+    const { user, logOut } = useContext(AuthContext);
+    const handlelogout = () => {
         logOut()
-        .then(()=>{})
-        .catch(err => console.log(err));
+            .then(() => { })
+            .catch(err => console.log(err));
     }
     const menuItems = <>
 
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/alcategories'>All-Categories</Link></li>
         <li><Link to='/blog'>BLOG</Link></li>
 
         {
-            user?.uid?
-           <>
-            <li><Link to ='/dashboard'>DashBoard</Link></li>
-            <li><button onClick={handlelogout}>SignOut</button></li>
-           </>
-        :
-        <li><Link to ='/login'>LogIn</Link></li>}
+            user?.uid ?
+                <>
+                    <li><Link to='/dashboard'>DashBoard</Link></li>
+                    <li><button onClick={handlelogout}>SignOut</button></li>
+                </>
+                :
+                <li><Link to='/login'>LogIn</Link></li>}
 
 
     </>
@@ -48,9 +47,9 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-               {/* <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+                <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-    </label>*/}
+                </label>
 
             </div>
 
