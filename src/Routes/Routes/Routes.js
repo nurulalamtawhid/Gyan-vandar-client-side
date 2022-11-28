@@ -3,6 +3,7 @@ import ErrorElement from "../../Errorpage/ErrorElement";
 import DashBoardLayout from "../../Layout/DashboardLayout/DashBoardLayout";
 import Main from "../../Layout/MainLayout/Main";
 import BooksCollection from "../../Pages/BooksCollection/BooksCollection";
+import Allsellers from "../../Pages/DashBoard/AllSellers/Allsellers";
 import Allusers from "../../Pages/DashBoard/Allusers/Allusers";
 import Myorders from "../../Pages/DashBoard/Myorders/Myorders";
 import Home from "../../Pages/Home/Home/Home";
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 {
                     path:'/dashboard/allusers',
                     element:<AdminRoutes><Allusers></Allusers></AdminRoutes>
+                },
+                {
+                    path:'/dashboard/allseller',
+                    element:<AdminRoutes><Allsellers></Allsellers></AdminRoutes>
                 }
 
             ]
