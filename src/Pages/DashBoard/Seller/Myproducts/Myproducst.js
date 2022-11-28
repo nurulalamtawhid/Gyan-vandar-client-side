@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/Authprovider';
 
@@ -20,6 +21,24 @@ const Myproducst = () => {
         }
     })
     refetch();
+    const handleAdvertised=(id)=>{
+        console.log(id);
+        fetch(`http://localhost:5001/products/advertised/${id}`,{
+            method :'PUT',
+            headers :{
+                authorization :`bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+           if(data.modifiedCount > 0){
+            toast.success('Items Advertised successfully');
+            console.log(data);
+            refetch();
+           }
+            
+        })
+    }
     return (
         <div>
         <h3 className="text-3xl mb-3">My-Products</h3>
@@ -55,7 +74,14 @@ const Myproducst = () => {
                                 <td>{product.sellername}</td>
                                 <td>{product.categoryname}</td>
                                 <td>
-                                <button className='btn btn-xs btn-outline btn-accent'>Advertise</button>
+                                {
+                                    product.advertise &&
+                                    <button onClick={()=>handleAdvertised(product._id)}  className='btn btn-xs btn-outline btn-accent'>Advertise</button>
+                                }
+                                {
+                                    !product.advertise &&
+                                    <span className='text-accent'>Advertised</span>
+                                }
                                 </td>
                                 <td><button className='btn btn-xs btn-outline btn-warning'>DELETE</button></td>
                             </tr>
