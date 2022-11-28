@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import Usetitle from '../../../Hook/Usetittle';
 
 const Allusers = () => {
+    Usetitle('AllBuyers');
     const { data: users = [],refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

@@ -3,8 +3,10 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Context/Authprovider';
+import Usetitle from '../../../../Hook/Usetittle';
 
 const Myproducst = () => {
+    Usetitle('My-products');
     const {user} = useContext(AuthContext);
     const url = `http://localhost:5001/products?email=${user?.email}`;
     const { data: products = [],refetch} = useQuery({

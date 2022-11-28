@@ -2,10 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/Authprovider';
+import Usetitle from '../../../Hook/Usetittle';
 import useToken from '../../../Hook/useToken';
 import Loading from '../../Shared/Loading/Loading';
 
 const Myorders = () => {
+    Usetitle('Myorders');
     const { user,loading } = useContext(AuthContext);
     const email = localStorage.getItem("email");
     
