@@ -12,9 +12,9 @@ const Advertisecard = ({ product }) => {
                     <img src={image} alt="" className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500" />
                     <div className="flex flex-col justify-between p-6 space-y-8">
                         <div className="space-y-2">
-                            <h2 className="text-3xl font-semibold tracking-wide">{name}</h2>
-                            <p className="text-gray-800">{categoryname}</p>
-                            <p className="text-gray-800">{resaleprice}</p>
+                            <h2 className="text-3xl font-semibold tracking-wide">Name: {name}</h2>
+                            <p className="text-gray-800">Category-Name:{categoryname}</p>
+                            <p className="text-gray-800">Price : {resaleprice} Tk</p>
                         </div>
                         
                     </div>
