@@ -32,7 +32,7 @@ const Allusers = () => {
      }   
     return (
         <div>
-        <h1>allusers{users.length}</h1>
+        <h1 className='text-3xl text-center'>Allusers :{users.length}</h1>
         <div className="overflow-x-auto">
             <table className="table w-full">
 

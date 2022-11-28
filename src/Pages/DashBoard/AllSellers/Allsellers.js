@@ -32,7 +32,7 @@ const Allsellers = () => {
      } 
     return (
         <div>
-        <h1>allusers{sellers.length}</h1>
+        <h1 className='text-2xl text-center'>All-sellers :{sellers.length}</h1>
         <div className="overflow-x-auto">
             <table className="table w-full">
 
@@ -42,6 +42,7 @@ const Allsellers = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>User-Role</th>
+                        <th>Make Admin</th>
                         <th>Delete</th>
                         
                     </tr>
