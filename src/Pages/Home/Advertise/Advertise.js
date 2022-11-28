@@ -8,7 +8,7 @@ const Advertise = () => {
       const {data: products = [],refetch} = useQuery({
         queryKey:["advertisedproducts"],
         queryFn: async ()=>{
-            const res = await fetch('http://localhost:5001/advertisedproducts');
+            const res = await fetch('https://gyan-vandar-server.vercel.app/advertisedproducts');
             const data = await res.json();
            // console.log(data);
             return data;

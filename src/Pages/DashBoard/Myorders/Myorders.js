@@ -11,7 +11,7 @@ const Myorders = () => {
     const { user,loading } = useContext(AuthContext);
     const email = localStorage.getItem("email");
     
-    const url = `http://localhost:5001/bookings?email=${user?.email}`;
+    const url = `https://gyan-vandar-server.vercel.app/bookings?email=${user?.email}`;
     const { data: bookings = [],refetch} = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {

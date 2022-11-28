@@ -8,13 +8,13 @@ const Allsellers = () => {
     const {data: sellers = [],refetch} = useQuery({
         queryKey:['users/seller'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5001/users/seller');
+            const res = await fetch('https://gyan-vandar-server.vercel.app/users/seller');
             const data = await res.json();
             return data;
         }
     });
     const handlemakeAdmin = id =>{
-        fetch(`http://localhost:5001/users/admin/${id}`,{
+        fetch(`https://gyan-vandar-server.vercel.app/users/admin/${id}`,{
             method :'PUT',
             headers :{
                 authorization :`bearer ${localStorage.getItem('accessToken')}`
@@ -34,7 +34,7 @@ const Allsellers = () => {
      } 
      const handleDelete = id =>{
         console.log(id);
-        fetch(`http://localhost:5001/users/${id}`,{
+        fetch(`https://gyan-vandar-server.vercel.app/users/${id}`,{
             method : "DELETE",
             headers :{
                 authorization : `bearer ${localStorage.getItem('accessToken')}`

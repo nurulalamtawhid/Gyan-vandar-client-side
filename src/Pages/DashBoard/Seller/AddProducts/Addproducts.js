@@ -40,7 +40,7 @@ const Addproducts = () => {
 
 
                     }
-                    fetch('http://localhost:5001/products', {
+                    fetch('https://gyan-vandar-server.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -64,7 +64,7 @@ const Addproducts = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categoriesselect'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5001/categoriesselect');
+            const res = await fetch('https://gyan-vandar-server.vercel.app/categoriesselect');
             const data = await res.json();
 
             return data;

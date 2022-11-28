@@ -8,7 +8,7 @@ import Usetitle from '../../../../Hook/Usetittle';
 const Myproducst = () => {
     Usetitle('My-products');
     const {user} = useContext(AuthContext);
-    const url = `http://localhost:5001/products?email=${user?.email}`;
+    const url = `https://gyan-vandar-server.vercel.app/products?email=${user?.email}`;
     const { data: products = [],refetch} = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
@@ -40,6 +40,23 @@ const Myproducst = () => {
            }
             
         })
+    }
+    const handleDelete=(id)=>{
+        fetch(`http://localhost:5001/products/remove/${id}`,{
+            method : "DELETE",
+            headers :{
+                authorization : `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res=> res.json())
+        .then(data=>{
+           if(data.deletedCount>0){
+            refetch();
+            toast.success(` Deleted the products Successfully`)
+           }
+           
+        })
+        
     }
     return (
         <div>
@@ -77,15 +94,15 @@ const Myproducst = () => {
                                 <td>{product.categoryname}</td>
                                 <td>
                                 {
-                                    product.advertise &&
+                                    !product.aadvertise &&
                                     <button onClick={()=>handleAdvertised(product._id)}  className='btn btn-xs btn-outline btn-accent'>Advertise</button>
                                 }
                                 {
-                                    !product.advertise &&
+                                    product.aadvertise &&
                                     <span className='text-accent'>Advertised</span>
                                 }
                                 </td>
-                                <td><button className='btn btn-xs btn-outline btn-warning'>DELETE</button></td>
+                                <td><button onClick={()=>handleDelete(product._id)} className='btn btn-xs btn-outline btn-warning'>DELETE</button></td>
                             </tr>
                         )
                     }

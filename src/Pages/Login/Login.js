@@ -44,7 +44,7 @@ const Login = () => {
     }
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('http://localhost:5001/users', {
+        fetch('https://gyan-vandar-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

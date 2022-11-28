@@ -30,7 +30,7 @@ const BookingModal = ({book,setBook}) => {
             price,
             location
         }
-        fetch('http://localhost:5001/bookings',{
+        fetch('https://gyan-vandar-server.vercel.app/bookings',{
             method :'POST',
             headers :{
                 'content-type' : 'application/json'

@@ -44,7 +44,7 @@ const router = createBrowserRouter([
                 {
                     path :'/bookscollection/:name',
                     element :<BooksCollection></BooksCollection>,
-                    loader :({params})=> fetch(`http://localhost:5001/products/${params.name}`)
+                    loader :({params})=> fetch(`https://gyan-vandar-server.vercel.app/products/${params.name}`)
                 }
             ]
         },

@@ -7,7 +7,7 @@ const Category = () => {
     const{data :bookscategories=[],refetch,isLoading} = useQuery({
         queryKey:["bookscategories"],
         queryFn : async()=>{
-            const res = await fetch('http://localhost:5001/bookscategories');
+            const res = await fetch('https://gyan-vandar-server.vercel.app/bookscategories');
             const data = await res.json();
             return data;
         }
